@@ -1,27 +1,8 @@
 <template>
-  <div id="app">
-    <!-- Your app content here -->
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <!-- <div id="app"> -->
+  <router-view :key="$route.fullPath" />
+  <!-- </div> -->
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-import HelloWorld from "./components/HelloWorld.vue";
-// import store from "./store";
-// import router from "./router";
-
-export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-  // setup() {
-  //   return {
-  //     store,
-  //     router,
-  //   };
-  // },
-});
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
 </script>

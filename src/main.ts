@@ -1,23 +1,13 @@
-// import { createApp } from 'vue'
-// import App from './App.vue'
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import vuetify from './plugins/vuetify' // import Vuetify
 
-// createApp(App).mount('#app')
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import './assets/main.css'
 
-// // Element UI
-// import ElementUI from "element-ui";
-// import "@/assets/styles/element.scss";
-// Vue.use(ElementUI);
+const app = createApp(App)
+app.use(vuetify)
 
-//styles
-// import "@/assets/styles/app.scss";
-// Vue.config.productionTip = false;
+app.use(router)
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+app.mount('#app')
