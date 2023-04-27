@@ -10,20 +10,20 @@
         src="../assets/Rectangle60.svg"
         cover
       />
-      <div class="coin-img login-bg">
-        <img src="../assets/login-bg.svg" alt="" />
+      <div class="coin-img">
+        <img src="../assets/Coin.svg" alt="" />
       </div>
-      <!-- <div class="group-img">
+      <div class="group-img">
         <img src="../assets/Group305.svg" alt="" />
-      </div> -->
+      </div>
       <form class="form-input-fild" @submit.prevent="submitForm">
-        <!-- <div v-if="showemptyemail" class="fill-the-field-c">
+        <div v-if="showemptyemail" class="fill-the-field-c">
           <div class="check-line">
             <img src="../assets/fill-the-field.svg" class="img-flude" alt="check" />
             <span>Please fill in this field</span>
           </div>
-        </div> -->
-        <!-- <div v-if="passwordCheck && !showemptyemail" class="input-fild-c">
+        </div>
+        <div v-if="passwordCheck && !showemptyemail" class="input-fild-c">
           <div class="check-line">
             <img
               v-if="chracterCheck"
@@ -66,28 +66,25 @@
             />
             <span v-bind:class="numberCheck ? 'check-text' : ''">Contains a number</span>
           </div>
-        </div> -->
+        </div>
         <div class="input-fild">
           <label for=""> Email Address</label>
           <input type="mail" v-model="formData.email" @input="checkemailValidation()" />
         </div>
 
-        <div class="input-fild" style="margin-bottom: 0">
+        <div class="input-fild">
           <div class="eye-icon"><img src="../assets/viewpassword.svg" alt="" /></div>
           <label for=""> Password</label>
           <input type="password" v-model="formData.password" @input="checkPasswordValidation()" />
         </div>
-        <div class="forget-pw">
-          <span>Forgot Password?</span>
-        </div>
-        <!-- <div class="input-fild">
+        <div class="input-fild">
           <input
             type="text"
             placeholder="Referral/Promo Code(Optional)"
             v-model="formData.promocode"
           />
-        </div> -->
-        <!-- <div class="input-fild check-box">
+        </div>
+        <div class="input-fild check-box">
           <div class="">
             <input type="checkbox" id="checkbox" name="checkbox" v-model="formData.checkbox" />
             <label for="checkbox">
@@ -95,12 +92,14 @@
               old</label
             >
           </div>
-        </div> -->
+        </div>
         <div class="com-button">
           <!-- <a href="#" class="pop-up-btn" onclick="submitForm()"> Sign Up </a> -->
-          <button class="pop-up-btn" type="submit">Sign in</button>
+          <button class="pop-up-btn" type="submit">Sign Up</button>
         </div>
-
+        <div class="com-text-singup">
+          <span> Already have an account? <a href="#">Sign Up</a></span>
+        </div>
         <div class="or-text">
           <span> OR</span>
         </div>
@@ -117,9 +116,6 @@
           <div class="icon">
             <img src="../assets/linkdin.svg" alt="" />
           </div>
-        </div>
-        <div class="com-text-singup">
-          <span> Don’t have an account yet?<a href="#">Create one now!</a></span>
         </div>
       </form>
     </div>
@@ -245,13 +241,7 @@ export default defineComponent({
   top: -4px;
   right: 0;
 }
-.login-bg {
-  left: -19px !important;
-  top: -8px !important;
-}
-.login-bg img {
-  width: 90%;
-}
+
 .group-img {
   position: absolute;
   top: 5%;
@@ -268,21 +258,6 @@ export default defineComponent({
   box-shadow: inset 2px 0px 4px 1px rgba(0, 0, 0, 0.12);
   border-radius: 12px;
   padding: 22px 0;
-}
-.forget-pw {
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 60px;
-  margin-top: 10px;
-}
-.forget-pw span {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #7782aa;
-  padding: 6px 24px;
 }
 .fill-the-field-c .check-line {
   display: flex;
@@ -429,7 +404,6 @@ export default defineComponent({
   font-size: 18px;
   line-height: 22px;
   color: #414968;
-  margin: 32px 0;
 }
 .or-text::after {
   position: absolute;
