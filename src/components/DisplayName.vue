@@ -1,30 +1,4 @@
-<template>
-    <div class="display-main-box">
-    <div id="slider">
-    <transition-group tag="div" :name="transitionName" class="slides-group">
-      <div v-if="show" :key="current" class="slide" >
-        <p><img src="../assets/profile_image_1.svg" alt=""></p>
-      </div>
-    </transition-group>
-    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
-      &#10094;
-    </div>
-    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
-      &#10095
-    </div>
-  </div>
-  <div class="display-title">
-      Enter a display name
-  </div>
-  <div class="input-fild">
-            <input type="mail"  placeholder="Username" />
-          </div>
-          <div class="submit-btn">
-              <a href="#">Submit</a>
-          </div>
-  </div>
-  </template>
-  <script lang="ts">
+<script lang="ts">
   import { defineComponent } from 'vue'
   
   export default defineComponent({
@@ -53,6 +27,33 @@
     }
   })
   </script>
+  <template>
+    <div class="display-main-box">
+    <div id="slider">
+    <transition-group tag="div" :name="transitionName" class="slides-group">
+      <div v-if="show" :key="current" class="slide" >
+        <p><img src="../assets/profile_image_1.svg" alt=""></p>
+      </div>
+    </transition-group>
+    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
+      &#10094;
+    </div>
+    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
+      &#10095
+    </div>
+  </div>
+  <div class="display-title">
+      Enter a display name
+  </div>
+  <div class="input-fild">
+            <input type="mail"  placeholder="Username" />
+          </div>
+          <div class="submit-btn">
+              <a href="#">Submit</a>
+          </div>
+  </div>
+  </template>
+  
   <style>
   @import url('https://fonts.googleapis.com/css?family=Crimson+Text');
   .display-title{

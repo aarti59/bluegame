@@ -1,3 +1,97 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+interface FormData {
+  formData: {
+    email: string
+    password: string
+    promocode: string
+    checkbox: boolean
+  },
+  showemptyemail: boolean
+  passwordCheck: boolean
+  chracterCheck: boolean
+  upperLowerCharacterCheck: boolean
+  numberCheck: boolean
+}
+
+export default defineComponent({
+  name: 'Login',
+  data(): { formData: FormData } {
+    return {
+      formData: {
+        email: '',
+        password: '',
+        promocode: '',
+        checkbox: false
+      },
+      showemptyemail: false,
+      passwordCheck: false,
+      chracterCheck: false,
+      upperLowerCharacterCheck: false,
+      numberCheck: false
+    }
+  },
+  methods: {
+    submitForm(): void {
+      if (this.formData.email == '' || !this.formData.email) {
+        this.showemptyemail = true
+      }
+      // we will get the form data here
+      console.log('form data..........', this.formData)
+      // Handle form submission here
+      if (
+        this.chracterCheck &&
+        this.upperLowerCharacterCheck &&
+        this.numberCheck &&
+        !this.showemptyemail
+      ) {
+        this.$router.push(`/displayname`)
+      }
+    },
+    checkemailValidation() {
+      console.log('.......called......', this.formData.email)
+      // this.showemptyemail = this.formData.email == '' || !this.formData.email ? true : false
+      let isEmail = this.validateEmail(this.formData.email)
+      this.showemptyemail = isEmail ? false : true
+    },
+    checkPasswordValidation() {
+      this.passwordCheck = true
+      this.formData.password = this.formData.password.replace(/\s/g, '') // remove all spaces
+
+      this.chracterCheck =
+        this.formData.password &&
+        this.formData.password.length >= 8 &&
+        this.formData.password.length <= 24
+          ? true
+          : false
+      // check string has atleast one upper case and one lower case character
+      this.upperLowerCharacterCheck = this.checkString(this.formData.password)
+      // check if string contains a number or not
+      this.numberCheck = this.containsNumber(this.formData.password)
+    },
+    // preventSpaces(event: KeyboardEvent) {
+    //   if (event.key === ' ') {
+    //     event.preventDefault() // prevent the space from being entered
+    //   }
+    // },
+
+    checkString(str: string): boolean {
+      console.log('string....123...', str)
+      const regex = /(?=.*[a-z])(?=.*[A-Z])/
+      return regex.test(str)
+    },
+    containsNumber(str: string): boolean {
+      const regex = /\d/
+      return regex.test(str)
+    },
+    validateEmail(email) {
+      var re = /\S+@\S+\.\S+/
+      return re.test(email)
+    }
+  }
+})
+</script>
 <template>
   <div class="card-custom">
     <div class="close-icon">
@@ -122,93 +216,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
-interface FormData {
-  email: string
-  password: string
-  promocode: string
-  checkbox: boolean
-}
 
-export default defineComponent({
-  name: 'Login',
-  data(): { formData: FormData } {
-    return {
-      formData: {
-        email: '',
-        password: '',
-        promocode: '',
-        checkbox: false
-      },
-      showemptyemail: false,
-      passwordCheck: false,
-      chracterCheck: false,
-      upperLowerCharacterCheck: false,
-      numberCheck: false
-    }
-  },
-  methods: {
-    submitForm(): void {
-      if (this.formData.email == '' || !this.formData.email) {
-        this.showemptyemail = true
-      }
-      // we will get the form data here
-      console.log('form data..........', this.formData)
-      // Handle form submission here
-      if (
-        this.chracterCheck &&
-        this.upperLowerCharacterCheck &&
-        this.numberCheck &&
-        !this.showemptyemail
-      ) {
-        this.$router.push(`/displayname`)
-      }
-    },
-    checkemailValidation() {
-      console.log('.......called......', this.formData.email)
-      // this.showemptyemail = this.formData.email == '' || !this.formData.email ? true : false
-      let isEmail = this.validateEmail(this.formData.email)
-      this.showemptyemail = isEmail ? false : true
-    },
-    checkPasswordValidation() {
-      this.passwordCheck = true
-      this.formData.password = this.formData.password.replace(/\s/g, '') // remove all spaces
-
-      this.chracterCheck =
-        this.formData.password &&
-        this.formData.password.length >= 8 &&
-        this.formData.password.length <= 24
-          ? true
-          : false
-      // check string has atleast one upper case and one lower case character
-      this.upperLowerCharacterCheck = this.checkString(this.formData.password)
-      // check if string contains a number or not
-      this.numberCheck = this.containsNumber(this.formData.password)
-    },
-    // preventSpaces(event: KeyboardEvent) {
-    //   if (event.key === ' ') {
-    //     event.preventDefault() // prevent the space from being entered
-    //   }
-    // },
-
-    checkString(str: string): boolean {
-      console.log('string....123...', str)
-      const regex = /(?=.*[a-z])(?=.*[A-Z])/
-      return regex.test(str)
-    },
-    containsNumber(str: string): boolean {
-      const regex = /\d/
-      return regex.test(str)
-    },
-    validateEmail(email) {
-      var re = /\S+@\S+\.\S+/
-      return re.test(email)
-    }
-  }
-})
-</script>
 <style scoped>
 .card-custom {
   /* position: absolute; */
